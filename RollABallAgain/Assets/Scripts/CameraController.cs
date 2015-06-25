@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        print("set offset");
 		_offset = transform.position - Player.transform.position;
 	}
 	
