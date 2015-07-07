@@ -48,7 +48,12 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (!other.gameObject.CompareTag("PickUp")) return;
-        other.gameObject.GetComponent<AudioSource>().Play();
+        var audioSource = other.gameObject.GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            Debug.Log("Shoould now Play Audio");
+            audioSource.Play();
+        }            
         other.gameObject.SetActive(false);
         _count++;
         SetCountText();

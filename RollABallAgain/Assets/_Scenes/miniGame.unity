@@ -1181,18 +1181,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 409896, guid: be198399cc34db144b26e3492241caa8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: .499999881
-      objectReference: {fileID: 0}
-    - target: {fileID: 409896, guid: be198399cc34db144b26e3492241caa8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: .500000596
-      objectReference: {fileID: 0}
-    - target: {fileID: 409896, guid: be198399cc34db144b26e3492241caa8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: .49999994
-      objectReference: {fileID: 0}
     - target: {fileID: 121284, guid: be198399cc34db144b26e3492241caa8, type: 2}
       propertyPath: m_Name
       value: Pickup (9)
@@ -1283,7 +1271,6 @@ GameObject:
   - 135: {fileID: 1164973291}
   - 23: {fileID: 1164973290}
   - 114: {fileID: 1164973289}
-  - 81: {fileID: 1164973295}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1375,13 +1362,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!81 &1164973295
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1164973288}
-  m_Enabled: 1
 --- !u!4 &1167487118 stripped
 Transform:
   m_PrefabParentObject: {fileID: 409896, guid: be198399cc34db144b26e3492241caa8, type: 2}
@@ -1401,8 +1381,8 @@ GameObject:
   - 20: {fileID: 1265612018}
   - 92: {fileID: 1265612017}
   - 124: {fileID: 1265612016}
-  - 81: {fileID: 1265612015}
   - 114: {fileID: 1265612020}
+  - 81: {fileID: 1265612015}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera

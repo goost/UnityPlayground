@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Xml.Schema;
 
 [System.Serializable]
 public class Boundary
@@ -15,10 +13,27 @@ public class PlayerController : MonoBehaviour
 
 {
     public float Speed;
-    public float tilt;
+    public float Tilt;
     public Boundary Boundary;
+    public GameObject Shot;
+    public float FireRate;
 
-    public void FixedUpdate()
+    private float _nextFire;
+    [SerializeField]
+    private Transform _shotSpawn;
+
+    void Update()
+    {
+        
+        if (Input.GetButton("Fire1") && Time.time > _nextFire )
+        {
+            _nextFire = Time.time + FireRate;
+            Instantiate(Shot, _shotSpawn.position, _shotSpawn.rotation);
+            GetComponent<AudioSource>().Play();
+        }
+    }
+
+    void FixedUpdate()
     {
         var moveHorrizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
@@ -30,6 +45,6 @@ public class PlayerController : MonoBehaviour
                 0f,
                 Mathf.Clamp(GetComponent<Rigidbody>().position.z, Boundary.ZMin, Boundary.ZMax)
             );
-        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0f, 0f, GetComponent<Rigidbody>().velocity.x*-tilt);
+        GetComponent<Rigidbody>().rotation = Quaternion.Euler(0f, 0f, GetComponent<Rigidbody>().velocity.x*-Tilt);
     }
 }
