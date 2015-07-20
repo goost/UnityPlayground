@@ -1,22 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HazardController : MonoBehaviour
+public class PowerUpController: MonoBehaviour
 {
 
-    [SerializeField] private GameObject _explosion;
-    [SerializeField] private GameObject _playerExplosion;
-    [SerializeField] private GameObject _explosionBig;
-    [SerializeField] private int _scoreValue;
+    [SerializeField]
+    private GameObject _explosion;
+    [SerializeField]
+    private GameObject _playerExplosion;
+    [SerializeField]
+    private int _scoreValue;
+    [SerializeField] private int _powerUpDuration;
     private GameController _gameController;
 
     void Start()
     {
-        if (Random.value < 0.1)
-        {
-            gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
-            _scoreValue *= 2;
-        }
         var gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject == null) return;
         _gameController = gameControllerObject.GetComponent<GameController>();
@@ -27,15 +25,8 @@ public class HazardController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boundary")) return;
-        if (_scoreValue != 10)
-            {
-                Instantiate(_explosionBig, other.transform.position, other.transform.rotation);
-            }
-            else
-            {
-                Instantiate(_explosion, other.transform.position, other.transform.rotation);
-            }
-
+        Instantiate(_explosion, transform.position, transform.rotation);
+        _gameController.Player.SetPowerUpState(_powerUpDuration); 
         if (other.CompareTag("Player"))
         {
             Instantiate(_playerExplosion, other.transform.position, other.transform.rotation);
@@ -47,5 +38,5 @@ public class HazardController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
 }

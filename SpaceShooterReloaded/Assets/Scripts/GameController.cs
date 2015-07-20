@@ -9,8 +9,10 @@ public class GameController : MonoBehaviour
 {
 
     [SerializeField] private GameObject _hazard;
+    [SerializeField] private GameObject _powerUp;
     [SerializeField] private Vector3 _spawnValues;
     [SerializeField] private int _hazardCount;
+    [SerializeField] private double _powerUpChance;
     [SerializeField] private float _spawnWait;
     [SerializeField] private float _startWait;
     [SerializeField] private float _waveWait;
@@ -19,6 +21,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text _gameOverText;
     [SerializeField] private AudioMixerSnapshot _gameOverSnapshot;
     [SerializeField] private AudioMixerSnapshot _mainSnapshot;
+    public PlayerController Player { get; private set; }
 
     private bool _gameOver;
     private bool _restart;
@@ -36,7 +39,12 @@ public class GameController : MonoBehaviour
         UpdateScore();
         InvokeRepeating("spawnHazard", _startWait, _spawnWait);
         Invoke("incrementVars", _hazardCount * _spawnWait + _startWait+1);
-      // StartCoroutine(spawnWaves());
+        Player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        if (Player == null)
+        {
+            Debug.LogError("Cannot find PlayerController Script.");
+        }
+        // StartCoroutine(spawnWaves());
     }
 
     void Update()
@@ -58,7 +66,7 @@ public class GameController : MonoBehaviour
             {
                 var spawnPosition = new Vector3(Random.Range(-_spawnValues.x, _spawnValues.x), 0, _spawnValues.z);
                 var spawnRotation = Quaternion.identity;
-                Instantiate(_hazard, spawnPosition, spawnRotation);
+                Instantiate(Random.value < _powerUpChance ? _powerUp : _hazard, spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
             spawnWait *= 0.9f;
@@ -88,7 +96,7 @@ public class GameController : MonoBehaviour
     {
             var spawnPosition = new Vector3(Random.Range(-_spawnValues.x, _spawnValues.x), 0, _spawnValues.z);
             var spawnRotation = Quaternion.identity;
-            Instantiate(_hazard, spawnPosition, spawnRotation);
+            Instantiate(Random.value < _powerUpChance ? _powerUp : _hazard, spawnPosition, spawnRotation);
     }
 
     public void GameOver()
@@ -112,4 +120,5 @@ public class GameController : MonoBehaviour
     {
         _scoreText.text = "Score: " + _score;
     }
+
 }
