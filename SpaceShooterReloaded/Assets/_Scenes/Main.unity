@@ -344,7 +344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a86dd493d9dff2429fb003591a9ade0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hazard: {fileID: 100356, guid: ddf6f69831f29b942aac5ca83004aaa1, type: 2}
+  _hazard:
+  - {fileID: 100356, guid: ddf6f69831f29b942aac5ca83004aaa1, type: 2}
+  - {fileID: 122790, guid: bfe09db7f90518343947801004c353cd, type: 2}
   _powerUp: {fileID: 109586, guid: cd303ebd90ca41e40911bfbb6fd6109d, type: 2}
   _spawnValues: {x: 6, y: 0, z: 16}
   _hazardCount: 8
@@ -660,6 +662,10 @@ Prefab:
     - target: {fileID: 400000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4282888114
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9930946b7c5f48e44aef1e56c2de7315, type: 2}

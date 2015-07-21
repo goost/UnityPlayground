@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class GameController : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _hazard;
+    [SerializeField] private GameObject[] _hazard;
     [SerializeField] private GameObject _powerUp;
     [SerializeField] private Vector3 _spawnValues;
     [SerializeField] private int _hazardCount;
@@ -66,7 +66,11 @@ public class GameController : MonoBehaviour
             {
                 var spawnPosition = new Vector3(Random.Range(-_spawnValues.x, _spawnValues.x), 0, _spawnValues.z);
                 var spawnRotation = Quaternion.identity;
-                Instantiate(Random.value < _powerUpChance ? _powerUp : _hazard, spawnPosition, spawnRotation);
+                Instantiate(
+                    Random.value < _powerUpChance ? 
+                        _powerUp :
+                        _hazard[Random.Range(0, _hazard.Length)], 
+                    spawnPosition, spawnRotation);
                 yield return new WaitForSeconds(spawnWait);
             }
             spawnWait *= 0.9f;
@@ -96,7 +100,11 @@ public class GameController : MonoBehaviour
     {
             var spawnPosition = new Vector3(Random.Range(-_spawnValues.x, _spawnValues.x), 0, _spawnValues.z);
             var spawnRotation = Quaternion.identity;
-            Instantiate(Random.value < _powerUpChance ? _powerUp : _hazard, spawnPosition, spawnRotation);
+            Instantiate(
+                    Random.value < _powerUpChance ?
+                        _powerUp :
+                        _hazard[Random.Range(0, _hazard.Length)],
+                    spawnPosition, spawnRotation);
     }
 
     public void GameOver()
