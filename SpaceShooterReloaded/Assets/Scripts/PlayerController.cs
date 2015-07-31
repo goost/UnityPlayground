@@ -11,7 +11,7 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
-    private enum State {NORMAL, POWERUP}
+    private enum State {Normal, Powerup, GameOver}
     public float Speed;
     public float Tilt;
     public Boundary Boundary;
@@ -27,14 +27,12 @@ public class PlayerController : MonoBehaviour
     private Transform _shotSpawnRight;
 
     private State _state;
-    private AudioSource _audio;
     private Rigidbody _rigidbody;
 
     void Start()
     {
-        _audio = GetComponent<AudioSource>();
         _rigidbody = GetComponent<Rigidbody>();
-        _state = State.NORMAL;
+        _state = State.Normal;
     }
 
     void Update()
@@ -44,23 +42,24 @@ public class PlayerController : MonoBehaviour
         {
             switch (_state)
             {
-                case State.NORMAL:
+                case State.Normal:
                     Instantiate(Shot, _shotSpawn.position, _shotSpawn.rotation);
                     break;
-                case State.POWERUP:
+                case State.Powerup:
                     Instantiate(Shot, _shotSpawnLeft.position, _shotSpawnLeft.rotation);
                     Instantiate(Shot, _shotSpawnRight.position, _shotSpawnRight.rotation);
                    // Instantiate(Shot, new Vector3(_shotSpawn.position.x, _shotSpawn.position.y, _shotSpawn.position.z + 2), _shotSpawn.rotation);
                     break;
+                case State.GameOver:
+                    break;
             }
             _nextFire = Time.time + FireRate;
-            
-            _audio.Play();
         }
     }
 
     void FixedUpdate()
     {
+        if (_state == State.GameOver) return;
         var moveHorrizontal = Input.GetAxis("Horizontal");
         var moveVertical = Input.GetAxis("Vertical");
 
@@ -76,12 +75,18 @@ public class PlayerController : MonoBehaviour
 
     private void SetNormalState()
     {
-        _state = State.NORMAL;
+        _state = State.Normal;
     }
     public void SetPowerUpState(int duration)
     {
         CancelInvoke("SetNormalState");
-        _state = State.POWERUP;
+        _state = State.Powerup;
         Invoke("SetNormalState", duration);
+    }
+
+    public void SetGameOverState()
+    {   
+        _rigidbody.Sleep();
+        _state = State.GameOver;
     }
 }

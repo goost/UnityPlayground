@@ -25,15 +25,18 @@ public class PowerUpController: MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boundary")) return;
-        Instantiate(_explosion, transform.position, transform.rotation);
-        _gameController.Player.SetPowerUpState(_powerUpDuration); 
+
+        if (other.CompareTag("Bolt"))
+        {
+            _gameController.Player.SetPowerUpState(_powerUpDuration);
+            _gameController.AddScore(_scoreValue);
+        } 
         if (other.CompareTag("Player"))
         {
             Instantiate(_playerExplosion, other.transform.position, other.transform.rotation);
             _gameController.GameOver();
         }
-
-        _gameController.AddScore(_scoreValue);
+        Instantiate(_explosion, transform.position, transform.rotation);
         Destroy(other.gameObject);
         Destroy(gameObject);
     }

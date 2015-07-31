@@ -13,7 +13,10 @@ public class Shooter : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    InvokeRepeating(Random.value < 0.2 ? "ShootTwo" : "ShootOne", 1, 2);
+	    InvokeRepeating(
+            Random.value < 0.2 ? "ShootTwo" : "ShootOne", 
+            Random.Range(0,2),
+            Random.Range(1,3));
 	}
 
     private void ShootOne()

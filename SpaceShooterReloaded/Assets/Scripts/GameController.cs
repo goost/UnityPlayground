@@ -111,6 +111,7 @@ public class GameController : MonoBehaviour
     {
         CancelInvoke("spawnHazard");
         CancelInvoke("incrementVars");
+        Player.SetGameOverState();
         _gameOverSnapshot.TransitionTo(2.5f);
         _gameOverText.text = "Game Over!";
         _gameOver = true;

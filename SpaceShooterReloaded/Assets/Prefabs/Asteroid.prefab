@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650df9fd55d5c434e87767de4fc4dacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: -5
+  Speed: -6
 --- !u!114 &11478058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +191,10 @@ Prefab:
       propertyPath: _explosionBig
       value: 
       objectReference: {fileID: 196014, guid: dd8d26bc0c92d02489a003df8997e856, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Speed
+      value: -6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100356}

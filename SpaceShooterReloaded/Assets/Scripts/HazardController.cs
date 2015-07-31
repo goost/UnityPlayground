@@ -41,8 +41,10 @@ public class HazardController : MonoBehaviour
             Instantiate(_playerExplosion, other.transform.position, other.transform.rotation);
             _gameController.GameOver();
         }
-
-        _gameController.AddScore(_scoreValue);
+        if (other.CompareTag("Bolt"))
+        {
+            _gameController.AddScore(_scoreValue);
+        }
         Destroy(other.gameObject);
         Destroy(gameObject);
     }
