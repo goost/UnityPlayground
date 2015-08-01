@@ -32,7 +32,7 @@ GameObject:
   - 82: {fileID: 8254330}
   m_Layer: 0
   m_Name: EnemyBolt
-  m_TagString: Bolt
+  m_TagString: EnemyBolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,7 +238,7 @@ Prefab:
       objectReference: {fileID: 100008, guid: a93496017806b7740910df5fd946f306, type: 2}
     - target: {fileID: 0}
       propertyPath: m_TagString
-      value: Bolt
+      value: EnemyBolt
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_audioClip
